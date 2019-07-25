@@ -12,25 +12,16 @@ function getScript(e,i){var n=document.createElement("script");n.type="text/java
 </script>
 </head>
 <body>
-<div id="canvasholder"></div>
 <style type="text/css">
 	html, body {
         background: black;
         margin: 0 auto;
         padding: 0;
     }
-    canvas {
-    	border: 1px solid #000000;
-    }
-    #canvasholder {
-    	width: 99vw;
-    	height: 99vw;
-    	margin: 0 auto;
-    }
 </style>
 
 <script>
-	console.log("Hi", 2);
+	console.log("Hi", 3);
 	var dpr = window.devicePixelRatio;
 	var innerW;
 	var innerH;
@@ -172,6 +163,7 @@ function getScript(e,i){var n=document.createElement("script");n.type="text/java
 
 	function adResizeCallback(event) {
 		landscape = event.width > event.height;
+		game.scale.refresh();
 	}
 
 	function audioVolumeChangeCallback(event) {}

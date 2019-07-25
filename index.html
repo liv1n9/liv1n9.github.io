@@ -168,8 +168,8 @@ function getScript(e,i){var n=document.createElement("script");n.type="text/java
 	function audioVolumeChangeCallback(event) {}
 
 	function startGame() {
-		innerW = dapi.getScreenSize().width;
-		innerH = dapi.getScreenSize().height;
+		innerW = window.innerWidth;
+		innerH = window.innerHeight;
 		screenW = innerW * dpr;
 		screenH = innerH * dpr;
 		landscape = screenW > screenH;
@@ -276,8 +276,8 @@ function getScript(e,i){var n=document.createElement("script");n.type="text/java
 
 			update: function() {
 				if (landscape != gLandscape) {
-					innerW = dapi.getScreenSize().width;
-					innerH = dapi.getScreenSize().height;
+					innerW = window.innerWidth;
+					innerH = window.innerHeight;
 					screenW = innerW * dpr;
 					screenH = innerH * dpr;
 					gLandscape = screenW > screenH;
@@ -901,8 +901,8 @@ function getScript(e,i){var n=document.createElement("script");n.type="text/java
 
 			update: function() {
 				if (landscape != gLandscape) {
-					innerW = dapi.getScreenSize().width;
-					innerH = dapi.getScreenSize().height;
+					innerW = window.innerWidth;
+					innerH = window.innerHeight;
 					screenW = innerW * dpr;
 					screenH = innerH * dpr;
 					gLandscape = screenW > screenH;

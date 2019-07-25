@@ -24,9 +24,8 @@ function getScript(e,i){var n=document.createElement("script");n.type="text/java
 	var dpr = window.devicePixelRatio;
 	var innerW;
 	var innerH;
-	var game.width;
-	var game.height;
-	var game.height;
+	var screenW;
+	var screenH;
 	var landscape;
 	var gLandscape;
 
@@ -170,10 +169,9 @@ function getScript(e,i){var n=document.createElement("script");n.type="text/java
 	function startGame() {
 		innerW = dapi.getScreenSize().width;
 		innerH = dapi.getScreenSize().height;
-		game.width = innerW * dpr;
-		game.height = innerH * dpr;
+		screenW = innerW * dpr;
+		screenH = innerH * dpr;
 		landscape = game.width > game.height;
-		game.height = game.height;
 
 		game = new Phaser.Game(game.width, game.height, Phaser.CANVAS, '');
 		gLandscape = game.width > game.height;
@@ -278,11 +276,10 @@ function getScript(e,i){var n=document.createElement("script");n.type="text/java
 				if (landscape != gLandscape) {
 					innerW = dapi.getScreenSize().width;
 					innerH = dapi.getScreenSize().height;
-					game.width = innerW * dpr;
-					game.height = innerH * dpr;
+					screenW = innerW * dpr;
+					screenH = innerH * dpr;
 					gLandscape = game.width > game.height;
-					game.height = game.height;
-					game.scale.setGameSize(game.width, game.height);
+					game.scale.setGameSize(screenW, screenH);
 					if (stage == 1) {
 						this.reload(true);
 					} else {

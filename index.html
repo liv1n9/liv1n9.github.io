@@ -171,7 +171,7 @@ function getScript(e,i){var n=document.createElement("script");n.type="text/java
 		innerH = dapi.getScreenSize().height;
 		screenW = innerW * dpr;
 		screenH = innerH * dpr;
-		landscape = game.width > game.height;
+		landscape = screenW > screenH;
 
 		game = new Phaser.Game(screenW, screenH, Phaser.CANVAS, '');
 		gLandscape = game.width > game.height;

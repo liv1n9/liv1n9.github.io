@@ -173,7 +173,7 @@ function getScript(e,i){var n=document.createElement("script");n.type="text/java
 		screenH = innerH * dpr;
 		landscape = game.width > game.height;
 
-		game = new Phaser.Game(game.width, game.height, Phaser.CANVAS, '');
+		game = new Phaser.Game(screenW, screenH, Phaser.CANVAS, '');
 		gLandscape = game.width > game.height;
 
 		boot = {
@@ -900,11 +900,10 @@ function getScript(e,i){var n=document.createElement("script");n.type="text/java
 				if (landscape != gLandscape) {
 					innerW = dapi.getScreenSize().width;
 					innerH = dapi.getScreenSize().height;
-					game.width = innerW * dpr;
-					game.height = innerH * dpr;
-					gLandscape = game.width > game.height;
-					game.height = game.height;
-					game.scale.setGameSize(game.width, game.height);
+					screenW = innerW * dpr;
+					screenH = innerH * dpr;
+					gLandscape = screenW > screenH;
+					game.scale.setGameSize(screenW, screenH);
 					game.state.start('endgame');
 				}
 			}

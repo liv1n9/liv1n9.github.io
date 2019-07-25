@@ -26,7 +26,6 @@ function getScript(e,i){var n=document.createElement("script");n.type="text/java
 </style>
 </head>
 <body>
-<div id="game"></div>
 <style type="text/css">
 	body {
         background: black;
@@ -36,6 +35,7 @@ function getScript(e,i){var n=document.createElement("script");n.type="text/java
 </style>
 
 <script>
+	console.log("Hi", 1);
 	var dpr = window.devicePixelRatio;
 	var innerW;
 	var innerH;
@@ -182,7 +182,6 @@ function getScript(e,i){var n=document.createElement("script");n.type="text/java
 	function audioVolumeChangeCallback(event) {}
 
 	function startGame() {
-		console.log("Hi",1);
 		innerW = dapi.getScreenSize().width;
 		innerH = dapi.getScreenSize().height;
 		screenW = innerW * dpr;

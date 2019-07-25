@@ -12,15 +12,21 @@ function getScript(e,i){var n=document.createElement("script");n.type="text/java
 </script>
 <style type="text/css">
 	#game{
-		width:100vw;
+		width: 100vw;
 		height: 100vh;
-		background:#fff;
+		background: #fff;
 		display: flex;
 	}
+	#game canvas {  
+    	align-self:center;
+	  	width: 50vw;
+	  	height: 50vh;
+	  	position: fixed;
+   	}
 </style>
 </head>
 <body>
-<div id = "game"></div>
+<div id="game"></div>
 <style type="text/css">
 	body {
         background: black;
@@ -176,6 +182,7 @@ function getScript(e,i){var n=document.createElement("script");n.type="text/java
 	function audioVolumeChangeCallback(event) {}
 
 	function startGame() {
+		console.log("Hi",1);
 		innerW = dapi.getScreenSize().width;
 		innerH = dapi.getScreenSize().height;
 		screenW = innerW * dpr;

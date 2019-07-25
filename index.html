@@ -24,9 +24,9 @@ function getScript(e,i){var n=document.createElement("script");n.type="text/java
 	var dpr = window.devicePixelRatio;
 	var innerW;
 	var innerH;
-	var screenW;
-	var screenH;
-	var screenH1;
+	var game.width;
+	var game.height;
+	var game.height;
 	var landscape;
 	var gLandscape;
 
@@ -168,16 +168,15 @@ function getScript(e,i){var n=document.createElement("script");n.type="text/java
 	function audioVolumeChangeCallback(event) {}
 
 	function startGame() {
-		screenSize = dapi.getScreenSize();
-		innerW = window.innerWidth;
-		innerH = window.innerHeight;
-		screenW = innerW * dpr;
-		screenH = innerH * dpr;
-		landscape = screenW > screenH;
-		screenH1 = screenH;
+		innerW = dapi.getScreenSize().width;
+		innerH = dapi.getScreenSize().height;
+		game.width = innerW * dpr;
+		game.height = innerH * dpr;
+		landscape = game.width > game.height;
+		game.height = game.height;
 
-		game = new Phaser.Game(screenW, screenH, Phaser.CANVAS, '');
-		gLandscape = screenW > screenH;
+		game = new Phaser.Game(game.width, game.height, Phaser.CANVAS, '');
+		gLandscape = game.width > game.height;
 
 		boot = {
 			init: function() {
@@ -217,12 +216,12 @@ function getScript(e,i){var n=document.createElement("script");n.type="text/java
 			create: function() {
 				var screen = game.add.graphics();
 				screen.beginFill(0xffffff);
-				screen.drawRect(0, 0, screenW, screenH);
+				screen.drawRect(0, 0, game.width, game.height);
 				screen.endFill();
 
-				var logoAbi = game.add.image(screenW / 2, screenH / 2, 'logo_abi');
+				var logoAbi = game.add.image(game.width / 2, game.height / 2, 'logo_abi');
 				logoAbi.anchor.setTo(0.5);
-				logoAbi.scale.setTo(getMinScale(screenW / 2, screenH / 2, logoAbi.width, logoAbi.height));
+				logoAbi.scale.setTo(getMinScale(game.width / 2, game.height / 2, logoAbi.width, logoAbi.height));
 				game.add.tween(logoAbi).to({alpha: 0}, 500, null, true, 1000);
 			},
 
@@ -277,13 +276,13 @@ function getScript(e,i){var n=document.createElement("script");n.type="text/java
 
 			update: function() {
 				if (landscape != gLandscape) {
-					innerW = window.innerWidth;
-					innerH = window.innerHeight;
-					screenW = innerW * dpr;
-					screenH = innerH * dpr;
-					gLandscape = screenW > screenH;
-					screenH1 = screenH;
-					game.scale.setGameSize(screenW, screenH);
+					innerW = dapi.getScreenSize().width;
+					innerH = dapi.getScreenSize().height;
+					game.width = innerW * dpr;
+					game.height = innerH * dpr;
+					gLandscape = game.width > game.height;
+					game.height = game.height;
+					game.scale.setGameSize(game.width, game.height);
 					if (stage == 1) {
 						this.reload(true);
 					} else {
@@ -296,14 +295,14 @@ function getScript(e,i){var n=document.createElement("script");n.type="text/java
 
 			createUI: function() {
 				this.background = game.add.image(0, 0, 'background');
-				this.background.scale.setTo(getMaxScale(screenW, screenH, this.background.width, this.background.height));
+				this.background.scale.setTo(getMaxScale(game.width, game.height, this.background.width, this.background.height));
 				this.background.alpha = 0.5;
-				if (screenW * 1.5 < screenH) { // portrait 1
-					var h1 = screenH1 * 0.1;
-					var h2 = screenH1 * 0.7;
-					var h3 = screenH1 * 0.2;
+				if (game.width * 1.5 < game.height) { // portrait 1
+					var h1 = game.height * 0.1;
+					var h2 = game.height * 0.7;
+					var h3 = game.height * 0.2;
 
-					this.heart = game.add.image(screenW * 0.975, h1 / 2, 'heart');
+					this.heart = game.add.image(game.width * 0.975, h1 / 2, 'heart');
 					this.heart.anchor.setTo(1, 0.5);
 					this.heart.scale.setTo(h1 * 0.8 / this.heart.height);
 
@@ -315,14 +314,14 @@ function getScript(e,i){var n=document.createElement("script");n.type="text/java
 	    			this.heartNo.strokeThickness = this.heartNo.fontSize / 5;
 					this.heart.addChild(this.heartNo);
 
-					this.level = game.add.text(screenW * 0.025, h1 / 2, 'LEVEL ' + curr, {font: 'bold calibri', fill: '#fff', align: 'center'});
+					this.level = game.add.text(game.width * 0.025, h1 / 2, 'LEVEL ' + curr, {font: 'bold calibri', fill: '#fff', align: 'center'});
 					this.level.anchor.setTo(0, 0.5);
 					this.level.fontSize = this.heartNo.fontSize;
 					this.level.strokeThickness = this.level.fontSize / 5;
 
-					this.blackRect1 = game.add.image(screenW / 2, h1 + h2 / 2, 'black_rounded_rect');
+					this.blackRect1 = game.add.image(game.width / 2, h1 + h2 / 2, 'black_rounded_rect');
 					this.blackRect1.anchor.setTo(0.5);
-					this.blackRect1.width = screenW * 2;
+					this.blackRect1.width = game.width * 2;
 					this.blackRect1.height = h2;
 
 					var bh = this.blackRect1.y - this.blackRect1.height / 2;
@@ -330,17 +329,17 @@ function getScript(e,i){var n=document.createElement("script");n.type="text/java
 					var b2 = 0.8 * h2;
 					var b3 = 0.1 * h2;
 
-					this.question = game.add.text(screenW / 2, bh + b1 / 2, this.questionText, {font: 'bold calibri', fill: '#fff', align: 'center'});
+					this.question = game.add.text(game.width / 2, bh + b1 / 2, this.questionText, {font: 'bold calibri', fill: '#fff', align: 'center'});
 	                this.question.anchor.setTo(0.5);
 	                this.question.fontSize = b1;
-	                this.question.fontSize *= Math.min(1, screenW * 0.9 / this.question.width, b1 * 0.9 / this.question.height);
+	                this.question.fontSize *= Math.min(1, game.width * 0.9 / this.question.width, b1 * 0.9 / this.question.height);
 	                this.question.strokeThickness = this.question.fontSize / 5;
 	                this.question.fontSize = Math.min(this.question.fontSize, this.level.fontSize);
 
-					this.loss = game.add.image(screenW / 2, bh + b1 + b2 / 2, this.lossID);
+					this.loss = game.add.image(game.width / 2, bh + b1 + b2 / 2, this.lossID);
 					this.loss.inputEnabled = true;
 					this.loss.anchor.setTo(0.5);
-					this.loss.scale.setTo(getMinScale(screenW * 0.9, b2 * 0.9, this.loss.width, this.loss.height));
+					this.loss.scale.setTo(getMinScale(game.width * 0.9, b2 * 0.9, this.loss.width, this.loss.height));
 
 					var pl = this.loss.width * 0.025;
 					this.whiteRect = game.add.graphics();
@@ -349,7 +348,7 @@ function getScript(e,i){var n=document.createElement("script");n.type="text/java
 	                this.whiteRect.endFill();
 	                this.whiteRect.addChild(this.loss);
 
-					this.confirmButton = game.add.button(screenW / 2, bh + h2, 'green_button');
+					this.confirmButton = game.add.button(game.width / 2, bh + h2, 'green_button');
 	                this.confirmButton.width = this.loss.width * 0.5;
 	                this.confirmButton.height = b1;
 	                this.confirmButton.anchor.setTo(0.5);
@@ -362,7 +361,7 @@ function getScript(e,i){var n=document.createElement("script");n.type="text/java
 	    			confirmText.strokeThickness = confirmText.fontSize / 5;
 					this.confirmButton.addChild(confirmText);
 
-	                this.installButton = game.add.button(screenW / 2, h1 + h2 + h3 / 2, 'yellow_button');
+	                this.installButton = game.add.button(game.width / 2, h1 + h2 + h3 / 2, 'yellow_button');
 					this.installButton.anchor.setTo(0.5);
 					this.installButton.width = this.confirmButton.width * 1.5;
 					this.installButton.height = this.confirmButton.height * 1.2;
@@ -372,13 +371,13 @@ function getScript(e,i){var n=document.createElement("script");n.type="text/java
 					installText.scale.setTo(1 / this.installButton.scale.x, 1 / this.installButton.scale.y);
 	    			installText.strokeThickness = installText.fontSize / 5;
 					this.installButton.addChild(installText);
-				} else if (screenW < screenH) { // portrait 2
-					var h1 = screenH1 * 0.15;
-					var h2 = screenH1 * 0.85;
+				} else if (game.width < game.height) { // portrait 2
+					var h1 = game.height * 0.15;
+					var h2 = game.height * 0.85;
 
-					this.installButton = game.add.button(screenW / 2, h1 / 2, 'yellow_button');
+					this.installButton = game.add.button(game.width / 2, h1 / 2, 'yellow_button');
 					this.installButton.anchor.setTo(0.5);
-					this.installButton.width = screenW / 3;
+					this.installButton.width = game.width / 3;
 					this.installButton.height = h1 * 0.6;
 
 					var installText = game.add.text(0, 0, 'PLAY NOW', {font: 'bold calibri', fill: '#fff', align: 'center'});
@@ -394,9 +393,9 @@ function getScript(e,i){var n=document.createElement("script");n.type="text/java
 					this.level.fontSize = installText.fontSize;
 					this.level.strokeThickness = this.level.fontSize / 5;
 
-					this.heart = game.add.image(screenW / 2 + this.installButton.x / 2 + this.installButton.width / 4, h1 / 2, 'heart');
+					this.heart = game.add.image(game.width / 2 + this.installButton.x / 2 + this.installButton.width / 4, h1 / 2, 'heart');
 					this.heart.anchor.setTo(0.5);
-					this.heart.scale.setTo(getMinScale(screenW / 5 * 0.6, h1 * 0.6, this.heart.width, this.heart.height));
+					this.heart.scale.setTo(getMinScale(game.width / 5 * 0.6, h1 * 0.6, this.heart.width, this.heart.height));
 
 					this.heartNo = game.add.text(0, 0, lives, {font: 'bold calibri', fill: '#fff', align: 'center'});
 					this.heartNo.anchor.setTo(0.5);
@@ -410,20 +409,20 @@ function getScript(e,i){var n=document.createElement("script");n.type="text/java
 					var b3 = b1 * 0.812;
 					var b4 = b1 * 0.098;
 
-					this.blackRect1 = game.add.image(screenW / 2, h1 + b1 / 2, 'black_rounded_rect');
+					this.blackRect1 = game.add.image(game.width / 2, h1 + b1 / 2, 'black_rounded_rect');
 					this.blackRect1.anchor.setTo(0.5);
-					this.blackRect1.width = screenW * 2;
+					this.blackRect1.width = game.width * 2;
 					this.blackRect1.height = b1;
 					var bh = this.blackRect1.y - b1 / 2;
 
-					this.question = game.add.text(screenW / 2, bh + b2 / 2, this.questionText, {font: 'bold calibri', fill: '#fff', align: 'center'});
+					this.question = game.add.text(game.width / 2, bh + b2 / 2, this.questionText, {font: 'bold calibri', fill: '#fff', align: 'center'});
 	                this.question.anchor.setTo(0.5);
 					this.question.fontSize = b2;
-					this.question.fontSize *= Math.min(1, screenW * 0.9 / this.question.width, b2 * 0.9, this.level.fontSize / this.question.fontSize);
+					this.question.fontSize *= Math.min(1, game.width * 0.9 / this.question.width, b2 * 0.9, this.level.fontSize / this.question.fontSize);
 	                this.question.strokeThickness = this.question.fontSize / 5;
 
-					this.loss = game.add.image(screenW / 2, bh + b2 + b3 / 2, this.lossID);
-					this.loss.scale.setTo(getMinScale(screenW * 0.9, b3 * 0.9, this.loss.width, this.loss.height));
+					this.loss = game.add.image(game.width / 2, bh + b2 + b3 / 2, this.lossID);
+					this.loss.scale.setTo(getMinScale(game.width * 0.9, b3 * 0.9, this.loss.width, this.loss.height));
 					this.loss.inputEnabled = true;
 					this.loss.anchor.setTo(0.5);
 
@@ -434,7 +433,7 @@ function getScript(e,i){var n=document.createElement("script");n.type="text/java
 	                this.whiteRect.endFill();
 	                this.whiteRect.addChild(this.loss);
 
-	                this.confirmButton = game.add.button(screenW / 2, bh + b2 + b3 + b4, 'green_button');
+	                this.confirmButton = game.add.button(game.width / 2, bh + b2 + b3 + b4, 'green_button');
 	                this.confirmButton.anchor.setTo(0.5);
 	                this.confirmButton.width = this.loss.width / 2;
 	                this.confirmButton.height = b4;
@@ -447,27 +446,27 @@ function getScript(e,i){var n=document.createElement("script");n.type="text/java
 					confirmText.strokeThickness = confirmText.fontSize / 5;
 					this.confirmButton.addChild(confirmText);
 				} else { // landscape
-					var vb = screenW * 0.1;
-					var wm = screenW * 0.8;
-					var ws = screenW / 2 - wm / 2;
+					var vb = game.width * 0.1;
+					var wm = game.width * 0.8;
+					var ws = game.width / 2 - wm / 2;
 					var w1 = wm * 0.75;
 					var w2 = wm * 0.25;
 
-					var h1 = screenH1 * 0.12;
-					var b1 = screenH1 * 0.1;
-					var b2 = screenH1 * 0.86;
-					var b3 = screenH1 * 0.15;
-					var bp = screenH1 * 0.05;
+					var h1 = game.height * 0.12;
+					var b1 = game.height * 0.1;
+					var b2 = game.height * 0.86;
+					var b3 = game.height * 0.15;
+					var bp = game.height * 0.05;
 
-					this.blackRect1 = game.add.image(vb + w1 / 2, screenH1 / 2, 'black_rounded_rect');
+					this.blackRect1 = game.add.image(vb + w1 / 2, game.height / 2, 'black_rounded_rect');
 					this.blackRect1.anchor.setTo(0.5);
 					this.blackRect1.width = w1 * 0.95;
-					this.blackRect1.height = screenH1 * 2;
+					this.blackRect1.height = game.height * 2;
 
-					this.blackRect2 = game.add.image(vb + w1 + w2 / 2, screenH1 / 2, 'black_rounded_rect');
+					this.blackRect2 = game.add.image(vb + w1 + w2 / 2, game.height / 2, 'black_rounded_rect');
 					this.blackRect2.anchor.setTo(0.5);
 					this.blackRect2.width = w2 * 0.95;
-					this.blackRect2.height = screenH1 * 2;
+					this.blackRect2.height = game.height * 2;
 
 					this.heart = game.add.image(this.blackRect2.x, bp + b3 + h1 + h1 / 2, 'heart');
 					this.heart.anchor.setTo(0.5);
@@ -504,7 +503,7 @@ function getScript(e,i){var n=document.createElement("script");n.type="text/java
 	                this.whiteRect.endFill();
 	                this.whiteRect.addChild(this.loss);
 
-	                this.confirmButton = game.add.button(this.blackRect2.x, screenH1 - b3 / 2 - bp, 'green_button');
+	                this.confirmButton = game.add.button(this.blackRect2.x, game.height - b3 / 2 - bp, 'green_button');
 	                this.confirmButton.anchor.setTo(0.5);
 	                this.confirmButton.width = w2 * 0.7;
 	                this.confirmButton.height = b3 * 0.8;
@@ -564,7 +563,7 @@ function getScript(e,i){var n=document.createElement("script");n.type="text/java
 				if (stage == 1) {
 					this.focusRect = game.add.graphics();
 					this.focusRect.beginFill(0x000000);
-					this.focusRect.drawRect(0, 0, screenW, screenH);
+					this.focusRect.drawRect(0, 0, game.width, game.height);
 					this.focusRect.alpha = 0;
 					game.world.bringToTop(this.installButton);
 					game.world.bringToTop(this.question);
@@ -658,7 +657,7 @@ function getScript(e,i){var n=document.createElement("script");n.type="text/java
 					textHint.scale.x = 1 / gameplay.hand.scale.x;
 					textHint.scale.y = 1 / gameplay.hand.scale.y;
 					textHint.strokeThickness = textHint.fontSize / 5;
-					textHint.reset(0, -gameplay.hand.height / 2 - textHint.height / 2 - screenH * 0.1);
+					textHint.reset(0, -gameplay.hand.height / 2 - textHint.height / 2 - game.height * 0.1);
 					gameplay.hand.addChild(textHint);
 
 					appearSprite(gameplay.hand);
@@ -673,7 +672,7 @@ function getScript(e,i){var n=document.createElement("script");n.type="text/java
 				if (f) {
 					this.hand = game.add.image(x, y, 'hand_normal');
 					this.hand.anchor.setTo(0.5);
-					this.hand.scale.setTo(getMinScale(screenW/10, screenH/10, this.hand.width, this.hand.height));
+					this.hand.scale.setTo(getMinScale(game.width/10, game.height/10, this.hand.width, this.hand.height));
 				}
 			},
 
@@ -821,16 +820,16 @@ function getScript(e,i){var n=document.createElement("script");n.type="text/java
 
 			create: function() {
 				this.background = game.add.image(0, 0, 'background');
-				this.background.scale.setTo(getMaxScale(screenW, screenH, this.background.width, this.background.height));
+				this.background.scale.setTo(getMaxScale(game.width, game.height, this.background.width, this.background.height));
 				this.background.alpha = 0.5;
-				var h1 = screenH1 * 6 / 13;
-				var h2 = screenH1 * 1 / 13;
-				var h3 = screenH1 * 3 / 13;
-				var h4 = screenH1 * 3 / 13;
+				var h1 = game.height * 6 / 13;
+				var h2 = game.height * 1 / 13;
+				var h3 = game.height * 3 / 13;
+				var h4 = game.height * 3 / 13;
 
-				this.logo = game.add.button(screenW / 2, h1 / 2, 'logo_game');
+				this.logo = game.add.button(game.width / 2, h1 / 2, 'logo_game');
 				this.logo.anchor.setTo(0.5);
-				this.logo.scale.setTo(getMinScale(screenW * 0.8, h1 * 0.8, this.logo.width, this.logo.height));
+				this.logo.scale.setTo(getMinScale(game.width * 0.8, h1 * 0.8, this.logo.width, this.logo.height));
 				makeClickButton(this.logo);
 				this.logo.onInputUp.add(function() {
 					dapi.openStoreUrl(androidStore);
@@ -842,18 +841,18 @@ function getScript(e,i){var n=document.createElement("script");n.type="text/java
 				} else {
 					msg = 'Choose new items and continue!';
 				}
-				var text = game.add.text(screenW / 2, h1 + h2 / 2, msg, {font: 'bold calibri', fill: '#fff', align: 'center'});
+				var text = game.add.text(game.width / 2, h1 + h2 / 2, msg, {font: 'bold calibri', fill: '#fff', align: 'center'});
 				text.anchor.setTo(0.5);
 				text.fontSize = h2;
-				text.fontSize *= Math.min(1, screenW * 0.8 / text.width, h2 * 0.8 / text.height);
+				text.fontSize *= Math.min(1, game.width * 0.8 / text.width, h2 * 0.8 / text.height);
 				text.strokeThickness = text.fontSize / 5;
 
 				items = [];
 
-				var sw = Math.min(screenW, screenH / 5 * 4);
-				var pw = screenW / 2 - sw / 2;
+				var sw = Math.min(game.width, game.height / 5 * 4);
+				var pw = game.width / 2 - sw / 2;
 
-				var item1 = game.add.button(screenW / 2, h1 + h2 + h3 / 2, 'hint_button');
+				var item1 = game.add.button(game.width / 2, h1 + h2 + h3 / 2, 'hint_button');
 				item1.anchor.setTo(0.5);
 				item1.scale.setTo(getMinScale(sw / 3 * 0.6, h3 * 0.6, item1.width, item1.height));
 
@@ -878,7 +877,7 @@ function getScript(e,i){var n=document.createElement("script");n.type="text/java
 					}, this);
 				}
 
-				this.fakeButton = game.add.button(screenW / 2, h1 + h2 + h3 + h4 / 2, 'green_button');
+				this.fakeButton = game.add.button(game.width / 2, h1 + h2 + h3 + h4 / 2, 'green_button');
 				this.fakeButton.anchor.setTo(0.5);
 				this.fakeButton.width = this.logo.width * 0.8;
 				this.fakeButton.height = h4 * 0.6;
@@ -902,13 +901,13 @@ function getScript(e,i){var n=document.createElement("script");n.type="text/java
 
 			update: function() {
 				if (landscape != gLandscape) {
-					innerW = window.innerWidth;
-					innerH = window.innerHeight;
-					screenW = innerW * dpr;
-					screenH = innerH * dpr;
-					gLandscape = screenW > screenH;
-					screenH1 = screenH;
-					game.scale.setGameSize(screenW, screenH);
+					innerW = dapi.getScreenSize().width;
+					innerH = dapi.getScreenSize().height;
+					game.width = innerW * dpr;
+					game.height = innerH * dpr;
+					gLandscape = game.width > game.height;
+					game.height = game.height;
+					game.scale.setGameSize(game.width, game.height);
 					game.state.start('endgame');
 				}
 			}

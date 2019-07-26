@@ -183,6 +183,10 @@ function getScript(e,i){var n=document.createElement("script");n.type="text/java
 		innerH = dapi.getScreenSize().height;
 		screenW = innerW * dpr;
 		screenH = innerH * dpr;
+		if (screenW == 0) {
+			screenW = window.innerWidth * dpr;
+			screenH = window.innerHeight * dpr;
+		}
 		lives = 5;
 		stage = 1;
 		curr = 1;
@@ -292,6 +296,10 @@ function getScript(e,i){var n=document.createElement("script");n.type="text/java
 					innerH = dapi.getScreenSize().height;
 					screenW = innerW * dpr;
 					screenH = innerH * dpr;
+					if (screenW == 0) {
+						screenW = window.innerWidth * dpr;
+						screenH = window.innerHeight * dpr;
+					}
 					game.scale.setGameSize(screenW, screenH);
 					gLandscape = game.width > game.height;
 					gameH = game.height;
@@ -931,6 +939,10 @@ function getScript(e,i){var n=document.createElement("script");n.type="text/java
 					innerH = dapi.getScreenSize().height;
 					screenW = innerW * dpr;
 					screenH = innerH * dpr;
+					if (screenW == 0) {
+						screenW = window.innerWidth * dpr;
+						screenH = window.innerHeight * dpr;
+					}
 					game.scale.setGameSize(screenW, screenH);
 					gLandscape = game.width > game.height;
 					gameH = game.height;

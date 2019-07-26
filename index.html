@@ -166,10 +166,12 @@ function getScript(e,i){var n=document.createElement("script");n.type="text/java
 		var temp = dapi.getAudioVolume();
 	}
 
+	var started = false;
+
 	function viewableChangeCallback(event) {
-		if (event.isViewable) {
+		if (event.isViewable && !started) {
 			startGame();
-			dapi.removeEventListener('viewableChange', viewableChangeCallback);
+			started = true;
 		}
 	}
 

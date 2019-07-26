@@ -315,7 +315,7 @@ function getScript(e,i){var n=document.createElement("script");n.type="text/java
 					this.heart.anchor.setTo(1, 0.5);
 					this.heart.scale.setTo(h1 * 0.8 / this.heart.height);
 
-					this.heartNo = game.add.text(-this.heart.width / 2 / this.heart.scale.x, 0, lives, {font: 'bold calibri', fill: '#fff', align: 'center'});
+					this.heartNo = game.add.text(-this.heart.width / 2 / this.heart.scale.x, 0, lives, {font: 'bold Arial', fill: '#fff', align: 'center'});
 					this.heartNo.anchor.setTo(0.5);
 					this.heartNo.scale.setTo(1 / this.heart.scale.x, 1 / this.heart.scale.y);
 					this.heartNo.fontSize = h1;
@@ -323,7 +323,7 @@ function getScript(e,i){var n=document.createElement("script");n.type="text/java
 	    			this.heartNo.strokeThickness = this.heartNo.fontSize / 5;
 					this.heart.addChild(this.heartNo);
 
-					this.level = game.add.text(game.width * 0.025, h1 / 2, 'LEVEL ' + curr, {font: 'bold calibri', fill: '#fff', align: 'center'});
+					this.level = game.add.text(game.width * 0.025, h1 / 2, 'LEVEL ' + curr, {font: 'bold Arial', fill: '#fff', align: 'center'});
 					this.level.anchor.setTo(0, 0.5);
 					this.level.fontSize = this.heartNo.fontSize;
 					this.level.strokeThickness = this.level.fontSize / 5;
@@ -338,7 +338,7 @@ function getScript(e,i){var n=document.createElement("script");n.type="text/java
 					var b2 = 0.8 * h2;
 					var b3 = 0.1 * h2;
 
-					this.question = game.add.text(game.width / 2, bh + b1 / 2, this.questionText, {font: 'bold calibri', fill: '#fff', align: 'center'});
+					this.question = game.add.text(game.width / 2, bh + b1 / 2, this.questionText, {font: 'bold Arial', fill: '#fff', align: 'center'});
 	                this.question.anchor.setTo(0.5);
 	                this.question.fontSize = b1;
 	                this.question.fontSize *= Math.min(1, game.width * 0.9 / this.question.width, b1 * 0.9 / this.question.height);
@@ -362,7 +362,7 @@ function getScript(e,i){var n=document.createElement("script");n.type="text/java
 	                this.confirmButton.height = b1;
 	                this.confirmButton.anchor.setTo(0.5);
 
-	                var confirmText = game.add.text(0, 0, 'CONFIRM', {font: 'bold calibri', fill: '#fff', align: 'center'});
+	                var confirmText = game.add.text(0, 0, 'CONFIRM', {font: 'bold Arial', fill: '#fff', align: 'center'});
 					confirmText.anchor.setTo(0.5);
 					confirmText.scale.setTo(1 / this.confirmButton.scale.x, 1 / this.confirmButton.scale.y);
 					confirmText.fontSize = b1;
@@ -374,7 +374,7 @@ function getScript(e,i){var n=document.createElement("script");n.type="text/java
 					this.installButton.anchor.setTo(0.5);
 					this.installButton.width = this.confirmButton.width * 1.5;
 					this.installButton.height = this.confirmButton.height * 1.2;
-					var installText = game.add.text(0, 0, 'PLAY NOW', {font: 'bold calibri', fill: '#fff', align: 'center'});
+					var installText = game.add.text(0, 0, 'PLAY NOW', {font: 'bold Arial', fill: '#fff', align: 'center'});
 					installText.anchor.setTo(0.5);
 					installText.fontSize = confirmText.fontSize * 1.25;
 					installText.scale.setTo(1 / this.installButton.scale.x, 1 / this.installButton.scale.y);
@@ -389,7 +389,7 @@ function getScript(e,i){var n=document.createElement("script");n.type="text/java
 					this.installButton.width = game.width / 3;
 					this.installButton.height = h1 * 0.6;
 
-					var installText = game.add.text(0, 0, 'PLAY NOW', {font: 'bold calibri', fill: '#fff', align: 'center'});
+					var installText = game.add.text(0, 0, 'PLAY NOW', {font: 'bold Arial', fill: '#fff', align: 'center'});
 					installText.anchor.setTo(0.5);
 					installText.scale.setTo(1 / this.installButton.scale.x, 1 / this.installButton.scale.y);
 					installText.fontSize = h1;
@@ -397,7 +397,7 @@ function getScript(e,i){var n=document.createElement("script");n.type="text/java
 	    			installText.strokeThickness = installText.fontSize / 5;
 					this.installButton.addChild(installText);
 
-					this.level = game.add.text(this.installButton.x / 2 - this.installButton.width / 4, h1 / 2, 'LEVEL ' + curr, {font: 'bold calibri', fill: '#fff', align: 'center'});
+					this.level = game.add.text(this.installButton.x / 2 - this.installButton.width / 4, h1 / 2, 'LEVEL ' + curr, {font: 'bold Arial', fill: '#fff', align: 'center'});
 					this.level.anchor.setTo(0.5);
 					this.level.fontSize = installText.fontSize;
 					this.level.strokeThickness = this.level.fontSize / 5;
@@ -406,7 +406,7 @@ function getScript(e,i){var n=document.createElement("script");n.type="text/java
 					this.heart.anchor.setTo(0.5);
 					this.heart.scale.setTo(getMinScale(game.width / 5 * 0.6, h1 * 0.6, this.heart.width, this.heart.height));
 
-					this.heartNo = game.add.text(0, 0, lives, {font: 'bold calibri', fill: '#fff', align: 'center'});
+					this.heartNo = game.add.text(0, 0, lives, {font: 'bold Arial', fill: '#fff', align: 'center'});
 					this.heartNo.anchor.setTo(0.5);
 					this.heartNo.fontSize = installText.fontSize;
 					this.heartNo.scale.setTo(1 / this.heart.scale.x, 1 / this.heart.scale.y);
@@ -424,7 +424,7 @@ function getScript(e,i){var n=document.createElement("script");n.type="text/java
 					this.blackRect1.height = b1;
 					var bh = this.blackRect1.y - b1 / 2;
 
-					this.question = game.add.text(game.width / 2, bh + b2 / 2, this.questionText, {font: 'bold calibri', fill: '#fff', align: 'center'});
+					this.question = game.add.text(game.width / 2, bh + b2 / 2, this.questionText, {font: 'bold Arial', fill: '#fff', align: 'center'});
 	                this.question.anchor.setTo(0.5);
 					this.question.fontSize = b2;
 					this.question.fontSize *= Math.min(1, game.width * 0.9 / this.question.width, b2 * 0.9, this.level.fontSize / this.question.fontSize);
@@ -447,7 +447,7 @@ function getScript(e,i){var n=document.createElement("script");n.type="text/java
 	                this.confirmButton.width = this.loss.width / 2;
 	                this.confirmButton.height = b4;
 
-	                var confirmText = game.add.text(0, 0, 'CONFIRM', {font: 'bold calibri', fill: '#fff', align: 'center'});
+	                var confirmText = game.add.text(0, 0, 'CONFIRM', {font: 'bold Arial', fill: '#fff', align: 'center'});
 					confirmText.anchor.setTo(0.5);
 					confirmText.scale.setTo(1 / this.confirmButton.scale.x, 1 / this.confirmButton.scale.y);
 					confirmText.fontSize = b4;
@@ -481,7 +481,7 @@ function getScript(e,i){var n=document.createElement("script");n.type="text/java
 					this.heart.anchor.setTo(0.5);
 					this.heart.scale.setTo(getMinScale(w2 * 0.6, h1, this.heart.width, this.heart.height));
 
-					this.heartNo = game.add.text(0, 0, lives, {font: 'bold calibri', fill: '#fff', align: 'center'});
+					this.heartNo = game.add.text(0, 0, lives, {font: 'bold Arial', fill: '#fff', align: 'center'});
 					this.heartNo.anchor.setTo(0.5);
 					this.heartNo.scale.setTo(1 / this.heart.scale.x, 1 / this.heart.scale.y);
 					this.heartNo.fontSize = h1;
@@ -489,12 +489,12 @@ function getScript(e,i){var n=document.createElement("script");n.type="text/java
 	    			this.heartNo.strokeThickness = this.heartNo.fontSize / 5;
 					this.heart.addChild(this.heartNo);
 
-					this.level = game.add.text(this.blackRect2.x, bp + b3 + h1 / 2, 'LEVEL ' + curr, {font: 'bold calibri', fill: '#fff', align: 'center'});
+					this.level = game.add.text(this.blackRect2.x, bp + b3 + h1 / 2, 'LEVEL ' + curr, {font: 'bold Arial', fill: '#fff', align: 'center'});
 					this.level.anchor.setTo(0.5);
 					this.level.fontSize = this.heartNo.fontSize;
 					this.level.strokeThickness = this.level.fontSize / 5;
 
-					this.question = game.add.text(this.blackRect1.x, b1 / 2, this.questionText, {font: 'bold calibri', fill: '#fff', align: 'center'});
+					this.question = game.add.text(this.blackRect1.x, b1 / 2, this.questionText, {font: 'bold Arial', fill: '#fff', align: 'center'});
 	                this.question.anchor.setTo(0.5);
 					this.question.fontSize = b2;
 					this.question.fontSize *= Math.min(1, this.blackRect1.width * 0.9 / this.question.width, b2 * 0.9, this.level.fontSize / this.question.fontSize);
@@ -517,7 +517,7 @@ function getScript(e,i){var n=document.createElement("script");n.type="text/java
 	                this.confirmButton.width = w2 * 0.7;
 	                this.confirmButton.height = b3 * 0.8;
 
-	                var confirmText = game.add.text(0, 0, 'CONFIRM', {font: 'bold calibri', fill: '#fff', align: 'center'});
+	                var confirmText = game.add.text(0, 0, 'CONFIRM', {font: 'bold Arial', fill: '#fff', align: 'center'});
 					confirmText.anchor.setTo(0.5);
 					confirmText.scale.setTo(1 / this.confirmButton.scale.x, 1 / this.confirmButton.scale.y);
 					confirmText.fontSize = b3;
@@ -530,7 +530,7 @@ function getScript(e,i){var n=document.createElement("script");n.type="text/java
 					this.installButton.width = w2 * 0.7;
 					this.installButton.height = b3 * 0.8;
 
-					var installText = game.add.text(0, 0, 'PLAY NOW', {font: 'bold calibri', fill: '#fff', align: 'center'});
+					var installText = game.add.text(0, 0, 'PLAY NOW', {font: 'bold Arial', fill: '#fff', align: 'center'});
 					installText.anchor.setTo(0.5);
 					installText.scale.setTo(1 / this.installButton.scale.x, 1 / this.installButton.scale.y);
 					installText.fontSize = b3;
@@ -664,7 +664,7 @@ function getScript(e,i){var n=document.createElement("script");n.type="text/java
 				this.hintEvent = game.time.events.add(2000, function() {
 					gameplay.resetHand(gameplay.loss.x, gameplay.loss.y);
 
-					var textHint = game.add.text(0, -gameplay.hand.height / 2 - 80 * dpr, 'Tap on the picture', {font: 'bold calibri', fill: '#fff', align: 'center'});
+					var textHint = game.add.text(0, -gameplay.hand.height / 2 - 80 * dpr, 'Tap on the picture', {font: 'bold Arial', fill: '#fff', align: 'center'});
 					textHint.anchor.setTo(0.5);
 					textHint.fontSize = gameplay.question.fontSize * 0.6;
 					textHint.scale.x = 1 / gameplay.hand.scale.x;
@@ -766,7 +766,7 @@ function getScript(e,i){var n=document.createElement("script");n.type="text/java
 						}, this);
 					}
 
-					var decText = game.add.text(this.heart.x + this.heart.width / 2 + this.heart.width *0.25, this.heart.y, "-1", {font: 'bold calibri', fill: '#fff', align: 'center'});
+					var decText = game.add.text(this.heart.x + this.heart.width / 2 + this.heart.width *0.25, this.heart.y, "-1", {font: 'bold Arial', fill: '#fff', align: 'center'});
 					decText.anchor.setTo(0.5);
 					decText.fontSize = this.heartNo.fontSize;
 					decText.stroke = '#cc0000';
@@ -787,7 +787,7 @@ function getScript(e,i){var n=document.createElement("script");n.type="text/java
 					game.add.tween(wrongArea).to({alpha: 0.8}, 500).start();
 					this.wrongs.push(wrongArea);
 
-					var wrongText = game.add.text(this.loss.x, this.loss.y, 'Wrong answer!', {font: 'bold calibri', fill: '#fff', align: 'center'});
+					var wrongText = game.add.text(this.loss.x, this.loss.y, 'Wrong answer!', {font: 'bold Arial', fill: '#fff', align: 'center'});
 					wrongText.anchor.setTo(0.5);
 					wrongText.fontSize = this.question.fontSize;
 					wrongText.stroke = '#dd0000';
@@ -864,7 +864,7 @@ function getScript(e,i){var n=document.createElement("script");n.type="text/java
 				} else {
 					msg = 'Choose new items and continue!';
 				}
-				var text = game.add.text(game.width / 2, h1 + h2 / 2, msg, {font: 'bold calibri', fill: '#fff', align: 'center'});
+				var text = game.add.text(game.width / 2, h1 + h2 / 2, msg, {font: 'bold Arial', fill: '#fff', align: 'center'});
 				text.anchor.setTo(0.5);
 				text.fontSize = h2;
 				text.fontSize *= Math.min(1, game.width * 0.8 / text.width, h2 * 0.8 / text.height);
@@ -905,7 +905,7 @@ function getScript(e,i){var n=document.createElement("script");n.type="text/java
 				this.fakeButton.width = this.logo.width * 0.8;
 				this.fakeButton.height = h4 * 0.6;
 
-				var fakeText = game.add.text(0, 0, lives > 0 ? 'CONTINUE' : 'TRY AGAIN', {font: 'bold calibri', fill: '#fff', align: 'center'});
+				var fakeText = game.add.text(0, 0, lives > 0 ? 'CONTINUE' : 'TRY AGAIN', {font: 'bold Arial', fill: '#fff', align: 'center'});
 				fakeText.anchor.setTo(0.5);
 				fakeText.scale.setTo(1 / this.fakeButton.scale.x, 1 / this.fakeButton.scale.y);
 				fakeText.fontSize = h4;

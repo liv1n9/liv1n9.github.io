@@ -44,9 +44,9 @@ function getScript(e,i){var n=document.createElement("script");n.type="text/java
 	var boot;
 	var gameplay;
 	var endgame;
-	var lives = 5;
-	var curr = 1;
-	var stage = 1;
+	var lives;
+	var curr;
+	var stage;
 
 	var androidStore = 'https://play.google.com/store/apps/details?id=com.abi.hidden.spots.adventure';
 
@@ -184,6 +184,9 @@ function getScript(e,i){var n=document.createElement("script");n.type="text/java
 		innerH = dapi.getScreenSize().height;
 		screenW = innerW * dpr;
 		screenH = innerH * dpr;
+		lives = 5;
+		stage = 1;
+		curr = 1;
 
 		game = new Phaser.Game(screenW, screenH, Phaser.CANVAS, 'game');
 

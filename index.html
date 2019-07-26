@@ -168,8 +168,8 @@ function getScript(e,i){var n=document.createElement("script");n.type="text/java
 
 	function viewableChangeCallback(event) {
 		if (event.isViewable) {
-			dapi.removeEventListener('viewableChange', viewableChangeCallback);
 			startGame();
+			dapi.removeEventListener('viewableChange', viewableChangeCallback);
 		}
 	}
 

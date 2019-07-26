@@ -47,7 +47,6 @@ function getScript(e,i){var n=document.createElement("script");n.type="text/java
 	var lives = 5;
 	var curr = 1;
 	var stage = 1;
-	var started = false;
 
 	var androidStore = 'https://play.google.com/store/apps/details?id=com.abi.hidden.spots.adventure';
 
@@ -168,8 +167,7 @@ function getScript(e,i){var n=document.createElement("script");n.type="text/java
 	}
 
 	function viewableChangeCallback(event) {
-		if (event.isViewable && !started) {
-			started = true;
+		if (event.isViewable) {
 			startGame();
 		}
 	}
@@ -555,7 +553,7 @@ function getScript(e,i){var n=document.createElement("script");n.type="text/java
 				makeClickButton(this.confirmButton);
 				shakeSprite(this.installButton);
 				this.installButton.onInputUp.add(function() {
-					dapi.openStoreUrl(androidStore);
+					dapi.openStoreUrl();
 				});
 				appearSprite(this.loss);
 				appearSprite(this.question);
@@ -857,7 +855,7 @@ function getScript(e,i){var n=document.createElement("script");n.type="text/java
 				this.logo.scale.setTo(getMinScale(game.width * 0.8, h1 * 0.8, this.logo.width, this.logo.height));
 				makeClickButton(this.logo);
 				this.logo.onInputUp.add(function() {
-					dapi.openStoreUrl(androidStore);
+					dapi.openStoreUrl();
 				}, this);
 				game.add.tween(this.logo).to({y: "+5"}, 1000, Phaser.Easing.Quadratic.InOut, true, 0, -1, true);
 				var msg;
@@ -898,7 +896,7 @@ function getScript(e,i){var n=document.createElement("script");n.type="text/java
 					makeClickButton(items[i]);
 					repeatZoomSprite(items[i], 1000, d, 5000);
 					items[i].onInputUp.add(function() {
-						dapi.openStoreUrl(androidStore);
+						dapi.openStoreUrl();
 					}, this);
 				}
 
@@ -919,7 +917,7 @@ function getScript(e,i){var n=document.createElement("script");n.type="text/java
 				makeClickButton(this.fakeButton);
 				popupSprite(this.fakeButton);
 				this.fakeButton.onInputUp.add(function() {
-					dapi.openStoreUrl(androidStore);
+					dapi.openStoreUrl();
 				});
 				repeatShakeSprite(this.fakeButton, 1000, 1000, 5000);
 			},

@@ -169,6 +169,7 @@ function getScript(e,i){var n=document.createElement("script");n.type="text/java
 	function viewableChangeCallback(event) {
 		if (event.isViewable) {
 			startGame();
+			dapi.removeEventListener('viewableChange', viewableChangeCallback);
 		}
 	}
 

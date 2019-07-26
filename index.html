@@ -157,16 +157,20 @@ function getScript(e,i){var n=document.createElement("script");n.type="text/java
 		dapi.isReady() ? onReadyCallback() : dapi.addEventListener('ready', onReadyCallback);
 	}
 
+	var started = false;
+
 	function onReadyCallback() {
 		dapi.removeEventListener('ready', onReadyCallback);
-		if (dapi.isViewable()) startGame();
+		if (dapi.isViewable()) {
+			startGame();
+			started = true;
+		}
 		dapi.addEventListener('viewableChange', viewableChangeCallback);
 		dapi.addEventListener('adResized', adResizeCallback);
 		dapi.addEventListener('audioVolumeChange', audioVolumeChangeCallback);
 		var temp = dapi.getAudioVolume();
 	}
 
-	var started = false;
 	function viewableChangeCallback(event) {
 		if (event.isViewable && !started) {
 			startGame();
@@ -196,7 +200,6 @@ function getScript(e,i){var n=document.createElement("script");n.type="text/java
 		game = new Phaser.Game(screenW, screenH, Phaser.CANVAS, 'game');
 
 		boot = {
-
 			preload: function() {
 				game.scale.scaleMode = Phaser.ScaleManager.SHOW_ALL;
 				game.scale.pageAlignHorizontally = true;
@@ -599,7 +602,7 @@ function getScript(e,i){var n=document.createElement("script");n.type="text/java
 				this.content.scale.y = this.loss.scale.y;
 				physicData = JSON.parse(JSON.stringify(physicDataM));
 				this.reshapePhysic(physicData[this.contentID], this.content.scale.x);
-				game.physics.p2.enable(this.content);
+				game.physics.p2.enable(this.content, true);
 				this.content.body.clearShapes();
 				this.content.body.loadPolygon(null, physicData[this.contentID]);
 				this.content.body.name = 'content';

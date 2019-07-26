@@ -47,7 +47,7 @@ function getScript(e,i){var n=document.createElement("script");n.type="text/java
 	var lives = 5;
 	var curr = 1;
 	var stage = 1;
-	var stated = false;
+	var started = false;
 
 	var androidStore = 'https://play.google.com/store/apps/details?id=com.abi.hidden.spots.adventure';
 
@@ -168,8 +168,8 @@ function getScript(e,i){var n=document.createElement("script");n.type="text/java
 	}
 
 	function viewableChangeCallback(event) {
-		if (event.isViewable && !stared) {
-			stared = true;
+		if (event.isViewable && !started) {
+			started = true;
 			startGame();
 		}
 	}
